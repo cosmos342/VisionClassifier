@@ -7,6 +7,7 @@ from keras.models import Sequential, load_model
 from keras.layers import Flatten,Dense, BatchNormalization, Activation
 from keras.layers.convolutional import Convolution2D
 from keras.optimizers import Adam
+from keras.regularizers import l2
 
 MODEL_VGG16 = 1
 MODEL_VGG19 = 2
@@ -76,6 +77,12 @@ class VisionModel:
 	def getTestGen(self):
 		return self.test_gen
 
+        def getValGen(self):
+                return self.val_gen
+
+        def getTrainGen(self):
+                return self.train_gen
+
 		
 
 
@@ -93,7 +100,7 @@ class VisionTrainedModel(VisionModel):
 		self.train_X = self.model.predict_generator(self.train_gen, 23000)
 		self.val_X =  self.model.predict_generator(self.val_gen,2000)
 		# need to know test size
-		self.test_X =  self.model.predict_generator(self.test_gen,11497)
+		self.test_X =  self.model.predict_generator(self.test_gen,12500)
 
 	def saveFeatures(self):
 		if(self.train_X is not None ):
@@ -101,7 +108,7 @@ class VisionTrainedModel(VisionModel):
 		if(self.val_X is not None ):
                 	np.save(open(self.saved_dir + '/bottleneck_features_val.npy', 'w'), self.val_X)
 		if(self.test_X is not None ):
-                	np.save(open(self.saved_dir + '/bottleneck_features_test.npy', 'w'), self.val_X)
+                	np.save(open(self.saved_dir + '/bottleneck_features_test.npy', 'w'), self.test_X)
 
 	def loadFeatures(self):
 		self.train_X = np.load(open(self.saved_dir + '/bottleneck_features_train.npy'))
@@ -126,13 +133,16 @@ class VisionTopModel:
 	def flatten(self,shape):
 		self.model.add(Flatten(input_shape=shape))
 
-	def addConv(self,num_filter,length,width):
-		self.model.add(Convolution2D(filters, length, width, border='same',activation='relu'))
+	def addConv(self,num_filter,nb_row,nb_col):
+		# self.model.add(Convolution2D(filters, length, width, border='same',activation='relu'))
+		self.model.add(Convolution2D(num_filter, nb_row,nb_col, border_mode='same'))
+		self.model.add(BatchNormalization())
+		self.model.add(Activation('relu'))
 
 	def addFC(self,num_neurons, batch_norm=True):
 		if(batch_norm == False):
 			print("addFC without batch norm ")
-			self.model.add(Dense(num_neurons,activation='relu'))
+			self.model.add(Dense(num_neurons,activation='relu', W_regularizer=l2(0.01)))
 		else:
 			print("addFC add batch norm ")
 			self.model.add(Dense(num_neurons))
