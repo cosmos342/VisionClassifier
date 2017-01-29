@@ -10,4 +10,4 @@
 
 # Future TODO:</br>
 * Further improve accuracy of dogs vs cats redux kernel.</br>
-* Make it generic to use other deep trained models such as RESENET,INCEPTION etc.</br>
+* Make it generic to use other pre-trained deep models such as RESENET,INCEPTION etc.</br>
