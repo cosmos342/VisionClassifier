@@ -6,7 +6,7 @@
 * Given a test directory with images in one sub-folder picks up images for prediction.</br>
 * Initially run to get train/validation/test VCG16 convolutional(CNN) feature maps and store the feature maps. </br>
 * Subsequenty load the CNN feature maps and train the topModel and do prediction.</br>
-* Current Test accuracy for kaggle dogs vs cats redux kernel competition about 93% with handful of epochs. </br>
+* Current Validation accuracy for kaggle dogs vs cats redux kernel competition about 93% with handful of epochs. </br>
 
 # Future TODO:</br>
 * Further improve accuracy of dogs vs cats redux kernel.</br>
