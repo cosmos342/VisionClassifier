@@ -9,7 +9,7 @@
 * Current Validation accuracy for kaggle dogs vs cats redux kernel competition about 93% with handful of epochs. </br>
 
 # Credits:
-* Keras examples, FastAI mooc.
+* Keras examples
 
 # Future TODO:</br>
 * Further improve accuracy of dogs vs cats redux kernel.</br>
