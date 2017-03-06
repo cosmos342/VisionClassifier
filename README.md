@@ -1,3 +1,4 @@
+
 # VisionClassifier
 * VisionClassifier to classify images(currently for dog vs cats redux kaggle kernel) </br>
 * Uses VCG16 imagenet implementation of keras. Removes top FC layers and classification layer.</br>
@@ -8,7 +9,10 @@
 * Subsequenty load the CNN feature maps and train the topModel and do prediction.</br>
 * Current Validation accuracy for kaggle dogs vs cats redux kernel competition about 93% with handful of epochs. </br>
 * Latest update. Tried the following 3 models and bettered performance.</br>
-  * Simple Model
+* First important change is adding a Lambda layer as the input layer of VGG16(this layer does not add any weights) </b>
+* Lambda layer takes the input image and subtracts the mean per channel specified by VGG16 folks and also changes the channels from RGB to BGR as VGG was trained for BGR.
+  * Simple Model </br>
+   * Takes the VGG 16 output of the final layer for each image(train/valid/test) and feeds that as the input for a simple dense layer with 2 inputs and softmax activation to classify as dog or cat. This provided accuracy of over 96% and put the kaggle submission in top 63%
 
 # Credits:
 * Keras examples
