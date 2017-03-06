@@ -1,4 +1,5 @@
- 
+
+
 # VisionClassifier
 * VisionClassifier to classify images(currently for dog vs cats redux kaggle kernel) </br>
 * Uses VCG16 imagenet implementation of keras. Removes top FC layers and classification layer.</br>
@@ -12,7 +13,12 @@
 * First important change is adding a Lambda layer as the input layer of VGG16(this layer does not add any weights) </b>
 * Lambda layer takes the input image and subtracts the mean per channel specified by VGG16 folks and also changes the channels from RGB to BGR as VGG was trained for BGR.
   * Simple Model </br>
-    * Takes the VGG 16 output of the final layer for each image(train/valid/test) and feeds that as the input for a simple dense layer with 2 inputs and softmax activation to classify as dog or cat. This provided accuracy of over 96% and put the kaggle submission in top 63%
+    * Takes the VGG 16 output of the final layer for each image(train/valid/test) and feeds that as the input for a simple dense layer with 2 inputs and softmax activation to classify as dog or cat. This provided accuracy of over 96% and put the kaggle submission in top 63% </br>
+  * Convolution Model </br>
+    * This removes the top FC layers of the VGG model. Runs the prediction on the VGG16 model gets last convolution layer output as input features for the top model.</br>
+    * The top Layer consists of 2 Fully connected layers, same as that of the VGG16(4K neurons each) but each with BatchNormalization layer. Then a final classification Fully connected layer of 2 elements with softmax. Trained this with learning rate of .01 for a few epochs(about 5) and then reduce the learning rate to 0.00001 and trained for few more epochs and the validation accuracy improved to 98%. Kaggle submission was in the top 30% range.
+   * Augmented Convolution Model </br>
+     * This is the same as the convolution model except that the input data to the VGG model is augmented with (rotation range etc) as can be seen in the VisionClassifer.py file when the --model option is specified as "aug". This model validation accuracy also came at around 98% and did not improve on Convolution Model. May be it could with more amount of training which i didn't get to try.
 
 # Credits:
 * Keras examples
