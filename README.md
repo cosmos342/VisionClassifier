@@ -1,5 +1,6 @@
 
 
+
 # VisionClassifier
 * VisionClassifier to classify images(currently for dog vs cats redux kaggle kernel) </br>
 * Uses VCG16 imagenet implementation of keras. Removes top FC layers and classification layer.</br>
@@ -18,7 +19,8 @@
     * This removes the top FC layers of the VGG model. Runs the prediction on the VGG16 model gets last convolution layer output as input features for the top model.</br>
     * The top Layer consists of 2 Fully connected layers, same as that of the VGG16(4K neurons each) but each with BatchNormalization layer. Then a final classification Fully connected layer of 2 elements with softmax. Trained this with learning rate of .01 for a few epochs(about 5) and then reduce the learning rate to 0.00001 and trained for few more epochs and the validation accuracy improved to 98%. Kaggle submission was in the top 30% range.
    * Augmented Convolution Model </br>
-     * This is the same as the convolution model except that the input data to the VGG model is augmented with (rotation range etc) as can be seen in the VisionClassifer.py file when the --model option is specified as "aug". This model validation accuracy also came at around 98% and did not improve on Convolution Model. May be it could with more amount of training which i didn't get to try.
+     * This is the same as the convolution model except that the input data to the VGG model is augmented with (rotation range etc) as can be seen in the VisionClassifer.py file when the --model option is specified as "aug". This model validation accuracy also came at around 98% and did not improve on Convolution Model. May be it could with more amount of training which i didn't get to try. 
+     * Also tried with L2 and L1 regularizers on this model. With regularizers initially the loss was high but it converged and could get to 98% accuracy within the few epochs tried. At this point may be some other model like vgg19 or inception model could be tried to accuracy can be further improved.
 
 # Credits:
 * Keras examples
