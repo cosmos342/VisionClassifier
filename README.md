@@ -8,7 +8,7 @@
 * Subsequenty load the CNN feature maps and train the topModel and do prediction.</br>
 * Current Validation accuracy for kaggle dogs vs cats redux kernel competition about 93% with handful of epochs. </br>
 * Latest update. Tried the following 3 models and bettered performance.
-** Simple Model
+  *Simple Model
 
 # Credits:
 * Keras examples
