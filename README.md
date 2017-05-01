@@ -24,7 +24,7 @@
      * Also tried with L2 and L1 regularizers on this model. With regularizers initially the loss was high but it converged and could get to 98% accuracy within the few epochs tried. At this point may be some other model like vgg19 or inception model could be tried to see accuracy can be further improved.
 
 # Credits:
-* Keras examples
+* Initial code from Keras examples
 
 # Future TODO:</br>
 * Further improve accuracy of dogs vs cats redux kernel.</br>
