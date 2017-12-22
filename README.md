@@ -2,6 +2,7 @@
 
 
 # VisionClassifier
+* This project is a playground where i am just trying out things. 
 * VisionClassifier to classify images(currently for dog vs cats redux kaggle kernel) </br>
 * Trained this model on AWS GPU instance </br>
 * Uses VCG16 imagenet implementation of keras. Removes top FC layers and classification layer.</br>
